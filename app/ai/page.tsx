@@ -6,27 +6,12 @@ import { fetchRoleSuggestions, getMatchingJobs, getRecommendedJobs } from "../ac
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { query: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const query = searchParams.query;
+  const query = searchParams.query as string;
   if (!query) {
     return <div>Error: No query provided</div>;
   }
-
-  // const data = await fetchRoleSuggestions(query).catch((error) => {
-  //   console.error("Error fetching role suggestions:", error);
-  //   return null;
-  // });
-
-  // if (!data) {
-  //   return <div>Error: Unable to process your request</div>;
-  // }
-
-  //const { skills, location } = data;
-  // const recs = await getRecommendedJobs(skills, location).catch((error) => {
-  //   console.error("Error getting recommended jobs:", error);
-  //   return null;
-  // });
 
   const userQuery = query.toLowerCase()
   .replace(/(?:^|\s)[a-z]/g, function (m) {
@@ -34,7 +19,6 @@ export default async function Page({
   });
 
   const recs = await getMatchingJobs(userQuery)
-
   if (!recs) {
     return <div>Error finding recommended jobs</div>;
   }

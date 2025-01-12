@@ -14,7 +14,7 @@ export default function SearchBlogs() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const handleBadgeSearch = useDebouncedCallback((term: string) => {
-    const params = new URLSearchParams(searchParams?.toString() ?? "");
+    const params = new URLSearchParams(searchParams?.toString() || "");
     if (selectedCategory === term) {
       params.delete("blogs");
       setSelectedCategory(null);

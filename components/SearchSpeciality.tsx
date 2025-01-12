@@ -22,9 +22,7 @@ export default function SearchSpeciality() {
   }, [searchParams]);
 
   const handleSearch = useDebouncedCallback((term: string) => {
-    const params = new URLSearchParams(
-      searchParams ? searchParams.toString() : ""
-    );
+    const params = new URLSearchParams(searchParams?.toString() || "");
     let newSpecialities: string[];
     if (selectedSpecialities.includes(term)) {
       newSpecialities = selectedSpecialities.filter((s) => s !== term);

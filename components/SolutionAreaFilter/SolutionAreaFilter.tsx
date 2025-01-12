@@ -15,7 +15,7 @@ const SolutionAreaFilter: React.FC = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  const params = new URLSearchParams(searchParams?.toString() ?? "");
+  const params = new URLSearchParams(searchParams?.toString() || "");
   const handleClick = (key: keyof typeof KeyAreas) => {
     params.delete("query");
     if (key) {
